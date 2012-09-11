@@ -1,0 +1,21 @@
+使い方
+このリポジトリを展開したディレクトリの中で
+
+.env という名前のファイルを作成
+.env の中に
+
+consumer_key="アプリのatoken"
+consumer_secret="アプリのsecret"
+oauth_token="ユーザのatoken"
+oauth_token_secret="ユーザのsecret"
+
+と書いておく。
+
+で，端末で
+
+$ foreman start
+
+と入力すれば動くはず。
+
+clock.rbの最後の行の
+every(10.seconds, 'twitter_unblock.job') の 10.seconds を変更すれば実行頻度を変えられる。
