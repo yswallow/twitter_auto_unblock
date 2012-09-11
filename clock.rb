@@ -11,15 +11,15 @@ require 'clockwork'
 require 'twitter'
 include Clockwork
 
+Twitter.configure do |config|
+	config.consumer_key = CONSUMER_KEY
+	config.consumer_secret = CONSUMER_SECRET
+	config.oauth_token = OAUTH_TOKEN
+	config.oauth_token_secret = OAUTH_TOKEN_SECRET
+end
 
 handler do |job|
-	Twitter.configure do |config|
-		config.consumer_key = CONSUMER_KEY
-		config.consumer_secret = CONSUMER_SECRET
-		config.oauth_token = OAUTH_TOKEN
-		config.oauth_token_secret = OAUTH_TOKEN_SECRET
-	end
-	
+
 	blocked_user = Twitter.blocking
 
 	blocked_user.each do |user|
@@ -28,4 +28,4 @@ handler do |job|
 	end
 end
 
-every(10.seconds, 'twitter_unblock.job')
+every(10.seconds,'twitter_unblock.job')
